@@ -15,7 +15,8 @@ def query(request):
 
     r = requests.post('https://reqres.in/api/users', data = {'name':submitted_job,'job':action})
     
-
-    command = r.text
-    return HttpResponse(command)
+    output = r.text
+    command = r.json()['name'] + " ==>  " + r.json()['job']
+    
+    return render(request, 'esplookup/output.html',{ 'output': output , 'command':command,})
 

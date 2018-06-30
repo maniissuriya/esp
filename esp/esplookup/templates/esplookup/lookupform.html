@@ -1,27 +1,97 @@
-<strong> Enter Job Name and select appropriate action</strong>
-<br>
+<!DOCTYPE html >
+<html lang="en">
+<head>       
+ <title>GBS Dashboard</title>
+        
+{% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="{% static 'esplookup/mystyle.css' %}">
+</head>    
+<body>       
+       <div class="col-12">
+            <div class="jumbotron" >
+                <h2> GBS Production Control -ESP Job Lookup</h2>
+            </div>
+       </div>
+       
+       
+       <!-- Main content- Includes a Form-->
+       
+      <div class="container">
+          
+          <!--Title If needed=
+          <div class="row" id="myTitle">
+              <h3> Title goes Here </h3>
+              <hr>
+          </div>    -->   
+       <div class="row" >
+        <div class="body-con col-offset-3 col-6">
+                <form id="myform" method="post" action="{% url 'query' %}" role="form">
+				{% csrf_token %}
+                    <div class="row" >
+                        <div class="col-12 f-e">
+                            <input style="width:400px;" class="inp" type="text" name="jobname" placeholder="Enter ESP Jobname" autofocus required><br>
+                        </div>
+                                                 
+                         <br>                        
+                         <div class="col-12 f-e" >
+                         <div class="f-g" >
+                            
+                            Region:   <select name="region">
+									<option value="gis_north">GIS-North</option>
+									<option value="gis_south">GIS-South</option>
+									<option value="teneck">Teneck</option>
+									<option value="barclay">Barclay</option>
+								</select>
+                            
+                         </div>
+                         </div>
+                         <br>                          
+                         <div class="col-12 f-e" >
+                            <fieldset class="col-8"> 
+                            <legend>-=: Environment :=-</legend>
+                            <input id="r4" type="radio" name="region" value="production" checked><label for="r4"> Production</label>
+                            <input id="r5" type="radio" name="region" value="test"><label for="r5"> Test</label>
+                            </fieldset>
+                         </div>
+						 
+						 <div class="col-12 f-e" >
+                            <fieldset class="col-8"> 
+                            <legend> -=: Action :=-</legend>
+                            <input id="r1" type="radio" name="action" value="schedule" checked> <label for="r1"> Schedule</label><br>
+                            <input id="r2" type="radio" name="action" value="history"><label for="r2"> History</label><br>
+                            <input id="r3" type="radio" name="action" value="satus"><label for="r3"> Job Status</label>
+                            </fieldset>
+                         </div>
+						 
+                            <input class="button" type="submit" value="Submit»">
+                            <input onclick="clearFunction()" class="button" type="button" value="Reset">
+                    </div>
+                 </form>
+        </div>
+       </div>
+      </div>
+      
+<!--Footer Part-->
 
-<form method="post" action="{% url 'query' %}">
-{% csrf_token %}
-    <input type="text" maxlength="10" name="jobname" id="jobname" placeholder="ESP JOB">
-    <label for="jobname"> JOBNAME</label><br>
-    <br>
 
+    <div class="foot col-12">
+        <div class="row">
+               
 
-    <select name="region">
-            <option value="gis_north">GIS-North</option>
-            <option value="gis_south">GIS-South/option>
-            <option value="teneck">Teneck</option>
-            <option value="barclay">Barclay</option>
-    </select>
-<br>
-    <fieldset>
-        <legend>Action:</legend>
-            <input type="radio" name="action" value="history" > JOB History <br>
-            <input type="radio" name="action" value="schedule" > Schedule <br>
-            <input type="radio" name="action" value="status" > status 
-    </fieldset>
+                   <div class="col-offset-5 col-4">
+                       <p >Copyrights@GBS<p>
+                   </div>
+                 
 
-<br>
-<input type="submit" value="Submit">
-</form>
+        </div>
+    </div>
+</body>
+<script>
+  function  clearFunction(){
+      document.getElementById("myform").reset();
+     
+    }
+</script>
+</html>

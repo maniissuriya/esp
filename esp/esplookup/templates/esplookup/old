@@ -1,0 +1,27 @@
+<strong> Enter Job Name and select appropriate action</strong>
+<br>
+
+<form method="post" action="{% url 'query' %}">
+{% csrf_token %}
+    <input type="text" maxlength="10" name="jobname" id="jobname" placeholder="ESP JOB">
+    <label for="jobname"> JOBNAME</label><br>
+    <br>
+
+
+    <select name="region">
+            <option value="gis_north">GIS-North</option>
+            <option value="gis_south">GIS-South/option>
+            <option value="teneck">Teneck</option>
+            <option value="barclay">Barclay</option>
+    </select>
+<br>
+    <fieldset>
+        <legend>Action:</legend>
+            <input type="radio" name="action" value="history" > JOB History <br>
+            <input type="radio" name="action" value="schedule" > Schedule <br>
+            <input type="radio" name="action" value="status" > status 
+    </fieldset>
+
+<br>
+<input type="submit" value="Submit">
+</form>
